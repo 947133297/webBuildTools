@@ -7,6 +7,8 @@ const del = require('del');
 const scss = require('gulp-sass');
 const uglify = require('gulp-uglify');
 const runSequence = require('run-sequence');
+const babel = require('gulp-babel');
+var flow = require('gulp-flowtype');
 
 var src = {
     all:'src/**/*',
@@ -22,8 +24,15 @@ gulp.task('compile:scss',function(){
         .pipe(gulp.dest(outputFloder));
 });
 
-gulp.task('compile:uglifyJs',function(){
+gulp.task('compile:js',function(){
     return gulp.src(src.js)
+        .pipe(flow({
+            killFlow: false,
+            abort: true
+        }))
+        .pipe(babel({
+            presets: ['env']
+        }))
         .pipe(uglify())
         .pipe(gulp.dest(outputFloder));
 });
@@ -34,7 +43,7 @@ gulp.task('copy',function(){
 });
 
 gulp.task('compile',function(){
-    runSequence('clean',['compile:uglifyJs','compile:scss']);
+    runSequence('clean',['compile:js','compile:scss']);
 });
 
 gulp.task('clean',function(){
