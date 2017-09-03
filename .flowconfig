@@ -1,9 +1,10 @@
 [ignore]
-.*/node_modules/.*
-.*/outputs/.*
+.*node_modules/.*
+.*outputs/.*
 
 [include]
+./src
 
 [libs]
-
+./lib
 [options]

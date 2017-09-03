@@ -1,12 +1,25 @@
 /**
  * Created by liwenjun on 2017/9/1.
- *
- * 先全局安装flow，flow init  然后用which flow ，获取到flow的cmd指令地址，用这个地址在webstorm中 进行配置flow
  */
 
 // @flow
+
+angular.module("app")
+    .directive("header",function(){
+        return {
+            templateUrl:"./outputs/components/header/header.html",
+            link:function(scope){
+                scope.headerName = "这是头的名字";
+            }
+        }
+    });
 
 let x = (a:number)=>a * a;
 
 console.log(x(1));
 
+// console.log(x("123"));  //test flow
+
+// test eslint
+// let y = 11;
+// console.log(y == 123);

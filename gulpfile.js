@@ -8,12 +8,15 @@ const scss = require('gulp-sass');
 const uglify = require('gulp-uglify');
 const runSequence = require('run-sequence');
 const babel = require('gulp-babel');
-var flow = require('gulp-flowtype');
+const flow = require('gulp-flowtype');
+const eslint = require('gulp-eslint');
+
 
 var src = {
     all:'src/**/*',
     scss:'src/**/*.scss',
-    js:'src/**/*.js'
+    js:'src/**/*.js',
+    html:'src/**/*.html'
 };
 
 var outputFloder = 'outputs/';
@@ -26,10 +29,13 @@ gulp.task('compile:scss',function(){
 
 gulp.task('compile:js',function(){
     return gulp.src(src.js)
-        .pipe(flow({
-            killFlow: false,
-            abort: true
-        }))
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError())
+        // .pipe(flow({
+        //     killFlow: false,
+        //     abort: true
+        // }))
         .pipe(babel({
             presets: ['env']
         }))
@@ -43,7 +49,12 @@ gulp.task('copy',function(){
 });
 
 gulp.task('compile',function(){
-    runSequence('clean',['compile:js','compile:scss']);
+    runSequence('clean',['compile:js','compile:scss','compile:html']);
+});
+
+gulp.task('compile:html',function(){
+    gulp.src(src.html)
+        .pipe(gulp.dest(outputFloder));
 });
 
 gulp.task('clean',function(){

@@ -6,8 +6,8 @@ webBuildTools
 
 辅助我们编写源文件的依赖用--save-dev来保存
 
-项目中用到的flow 使用全局安装,然后 flow init
+配置webstorm flow ，直接用当前目录下的./node_modules/.bin/flow.cmd 就行了
 
-npm run e625 : 需要 babel-cli 全局安装
+使用flow导致stub，还不知道原因、先不用
 
 很奇怪，明明没用到react，却一定要添加babel-preset-react，否则转码的时候就报错
