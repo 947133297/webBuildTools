@@ -3,3 +3,4 @@ node_modules
 outputs
 .idea
 .git
+npm-debug\.log
