@@ -10,16 +10,16 @@ const runSequence = require('run-sequence');
 const babel = require('gulp-babel');
 const flow = require('gulp-flowtype');
 const eslint = require('gulp-eslint');
+const browserSync = require('browser-sync').create();
 
-
-var src = {
+const src = {
     all:'src/**/*',
     scss:'src/**/*.scss',
     js:'src/**/*.js',
     html:'src/**/*.html'
 };
 
-var outputFloder = 'outputs/';
+const outputFloder = 'outputs/';
 
 gulp.task('compile:scss',function(){
     return gulp.src(src.scss)
@@ -57,7 +57,24 @@ gulp.task('compile:html',function(){
         .pipe(gulp.dest(outputFloder));
 });
 
+gulp.task('watchJs',function(){
+    gulp.watch(src.js).on('change', function(){
+        //TODO 仅仅对更新了的文件进行重新编译
+        runSequence('compile:js',function(){
+            browserSync.reload();
+        });
+    });
+    browserSync.init({
+        proxy: {
+            target: 'http://localhost:8888'
+        },
+    });
+});
+
 gulp.task('clean',function(){
     // 整个目录删除
     return del(outputFloder);
+});
+gulp.task('build', function() {
+    runSequence('compile','watchJs');
 });

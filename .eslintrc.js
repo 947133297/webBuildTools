@@ -5,7 +5,9 @@ module.exports = {
         "es6": true
     },
     "globals":{
-        "angular": true
+        "angular": true,
+        "jquery":true,
+        "$":true
     },
     "extends": "eslint:recommended",
     "rules": {

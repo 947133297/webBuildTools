@@ -10,8 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "e625": "babel src -d outputs",
     "check:js": "flow check",
-    "gulp":"gulp",
-    "flow":"flow"
+    "gulp": "gulp",
+    "flow": "flow"
   },
   "repository": {
     "type": "git",
@@ -37,8 +37,13 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "browser-sync": "^2.18.13",
+    "express": "^4.15.4",
+    "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-eslint": "^4.0.0",
-    "gulp-flowtype": "^1.0.0"
+    "gulp-flowtype": "^1.0.0",
+    "http-proxy-middleware": "^0.17.4",
+    "serve-index": "^1.9.0"
   }
 }

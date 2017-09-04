@@ -9,7 +9,7 @@ angular.module("app")
         return {
             templateUrl:"./outputs/components/header/header.html",
             link:function(scope){
-                scope.headerName = "这是头的名字";
+                scope.headerName = "这是头的名字2";
             }
         }
     });
@@ -23,3 +23,8 @@ console.log(x(1));
 // test eslint
 // let y = 11;
 // console.log(y == 123);
+
+//test proxy
+$.get("/api",function(res){
+    alert(res);
+});
